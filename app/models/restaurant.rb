@@ -1,7 +1,7 @@
 class Restaurant < ApplicationRecord
-  # has_many :review
-  # validate :name, presence: true
-  # validate :address, presence: true
-  # validates_inclusion_of :category, in: ['chinese', 'italian', 'japanese', 'french', 'belgian']
-  # has_many :review
+  CATEGORIES = ['chinese', 'italian', 'japanese', 'french', 'belgian']
+  has_many :review
+  validates :name, :address, :phone_number, presence: true
+  validates :category, inclusion: { in: ['chinese', 'italian', 'japanese', 'french', 'belgian'] }
+  has_many :reviews, dependent: :destroy, inverse_of: :restaurant
 end
